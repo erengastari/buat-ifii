@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surat Istirahat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff;
+            text-align: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 400px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #0072ff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #005bb5;
+        }
+        .message {
+            display: none;
+            background: white;
+            color: #001f3f;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Hai mbek cantik! 💌</h2>
+        <p>Putar musik dulu ya sebelum baca pesannya. 🎵</p>
+        <button class="button" id="playButton">Putar Musik</button>
+        
+        <div class="message" id="message">
+            <p>Hari ini pasti capek yaa, tapi aku cuma mau bilang: terima kasih udah kerja keras! Jangan lupa istirahat, ya. Aku selalu doain yang terbaik buat kamu. 🥰</p>
+            <p>Good night, mimpi indah! 🌙</p>
+            <button class="button" id="replyButton">Balas Pesan via WhatsApp</button>
+        </div>
+    </div>
+
+    <audio id="backgroundMusic">
+        <source src="https://dl.sndup.net/3gsh/sweet-piano.mp3" type="audio/mpeg">
+        Browser kamu tidak mendukung audio.
+    </audio>
+
+    <script>
+        const playButton = document.getElementById('playButton');
+        const replyButton = document.getElementById('replyButton');
+        const music = document.getElementById('backgroundMusic');
+        const message = document.getElementById('message');
+
+        playButton.addEventListener('click', () => {
+            music.play()
+                .then(() => {
+                    alert('Musik diputar. Selamat menikmati! 🎶');
+                    message.style.display = 'block';
+                    playButton.style.display = 'none';
+                })
+                .catch(error => {
+                    alert('Gagal memutar musik. Silakan periksa pengaturan browser!');
+                });
+        });
+
+        replyButton.addEventListener('click', () => {
+            const whatsappNumber = "088214797571";
+            const whatsappMessage = "Hai, makasih ya untuk pesannya tadi! 🥰";
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+            window.open(whatsappURL, '_blank');
+        });
+    </script>
+</body>
+</html>
